@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Collector
 
-## Getting Started
+**Collector** est une marketplace française pour les objets de collection : jouets vintage, figurines, comics, retro gaming et plus encore.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16.1-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?logo=tailwind-css)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+## ✨ Fonctionnalités
+
+- 🛍️ **Navigation** — Parcourir les articles, boutiques et catégories
+- 🏪 **Gestion de boutiques** — Créer et gérer vos propres boutiques
+- 📦 **Gestion d'articles** — Ajouter, modifier et supprimer des articles
+- 🔐 **Authentification** — Inscription et connexion sécurisées
+- 🌙 **Mode sombre** — Thème clair/sombre avec détection système
+- 🇫🇷 **Interface française** — UI entièrement en français
+
+## 🛠️ Stack Technique
+
+| Technologie | Description |
+|-------------|-------------|
+| [Next.js 16](https://nextjs.org) | Framework React avec App Router et SSR |
+| [TypeScript](https://typescriptlang.org) | Typage statique |
+| [Tailwind CSS 4](https://tailwindcss.com) | Framework CSS utility-first |
+| [shadcn/ui](https://ui.shadcn.com) | Composants UI accessibles |
+| [React Query](https://tanstack.com/query) | Gestion du cache et des requêtes |
+| [next-themes](https://github.com/pacocoursey/next-themes) | Gestion des thèmes |
+| [Zod](https://zod.dev) | Validation des schémas |
+| [Playwright](https://playwright.dev) | Tests end-to-end |
+
+## 📋 Prérequis
+
+- Node.js 20+
+- npm ou pnpm
+- API Symfony (voir [collector-api](../collector-api))
+
+## 🚀 Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Cloner le repository
+git clone https://github.com/votre-username/collector.git
+cd collector/collector-web
+
+# Installer les dépendances
+npm install
+
+# Configurer l'environnement
+cp .env.example .env.local
+# Éditer .env.local avec votre URL API
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Créez un fichier `.env.local` :
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8080
+NEXT_PUBLIC_SITE_NAME=Collector
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
 
-## Learn More
+## 💻 Développement
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Démarrer le serveur de développement
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Linter
+npm run lint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Build production
+npm run build
+```
 
-## Deploy on Vercel
+Ouvrir [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 Tests
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Lancer tous les tests
+npm run test
+
+# Tests avec interface graphique
+npm run test:ui
+
+# Tests en mode visible
+npm run test:headed
+
+# Voir le rapport
+npm run test:report
+```
+
+## 📁 Structure du Projet
+
+```
+src/
+├── app/                    # Routes Next.js (App Router)
+│   ├── (auth)/            # Pages d'authentification
+│   ├── (dashboard)/       # Pages du tableau de bord
+│   └── (main)/            # Pages publiques
+├── components/
+│   ├── ui/                # Composants shadcn/ui
+│   ├── layout/            # Header, Footer, Sidebar
+│   ├── shared/            # Composants réutilisables
+│   ├── items/             # Composants articles
+│   ├── shops/             # Composants boutiques
+│   └── categories/        # Composants catégories
+├── config/                # Configuration (theme, navigation)
+├── hooks/                 # Hooks React personnalisés
+├── lib/
+│   ├── api/              # Client API et services
+│   ├── utils/            # Utilitaires
+│   └── validations/      # Schémas Zod
+└── types/                 # Types TypeScript
+```
+
+## 🎨 Palette de Couleurs
+
+| Couleur | Hex | Usage |
+|---------|-----|-------|
+| Beige chaud | `#efc595` | Secondaire, avertissements |
+| Vert lime | `#81c14b` | Primaire (mode sombre), accents |
+| Vert moyen | `#2e933c` | Marque, succès |
+| Vert forêt | `#297045` | Primaire (mode clair) |
+| Bleu-vert foncé | `#204e4a` | Texte, arrière-plans sombres |
+
+## 🔗 API
+
+L'application consomme une API Symfony API Platform avec format JSON-LD/Hydra.
+
+Endpoints principaux :
+- `GET /api/items` — Liste des articles
+- `GET /api/shops` — Liste des boutiques
+- `GET /api/categories` — Liste des catégories
+- `GET /api/users` — Liste des utilisateurs
+
+## 📄 License
+
+MIT © Collector
