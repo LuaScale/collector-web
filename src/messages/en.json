@@ -1,0 +1,168 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "redirecting": "Redirecting...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "allRightsReserved": "All rights reserved.",
+    "items": "{count, plural, =0 {item} =1 {item} other {items}}",
+    "itemCount": "{count} {count, plural, =0 {item} =1 {item} other {items}}"
+  },
+  "nav": {
+    "items": "Items",
+    "categories": "Categories",
+    "shops": "Shops",
+    "dashboard": "Dashboard",
+    "myShops": "My Shops",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "navigation": "Navigation",
+    "account": "Account"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "pseudo": "Username",
+    "phoneNumber": "Phone Number",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loginTitle": "Welcome back!",
+    "loginDescription": "Log in to access your dashboard",
+    "registerTitle": "Create an account",
+    "registerDescription": "Join our community of collectors",
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email",
+      "emailTooLong": "Email must not exceed 180 characters",
+      "passwordRequired": "Password is required",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "confirmPasswordRequired": "Please confirm your password",
+      "passwordMismatch": "Passwords do not match",
+      "pseudoRequired": "Username is required",
+      "pseudoTooLong": "Username must not exceed 50 characters",
+      "phoneTooLong": "Phone number must not exceed 20 characters",
+      "invalidCredentials": "Invalid email or password"
+    }
+  },
+  "site": {
+    "name": "Collector",
+    "description": "The marketplace for passionate collectors",
+    "tagline": "Find rare and unique pieces for your collection.",
+    "keywords": "collection, vintage, figurines, toys, retro, marketplace"
+  },
+  "home": {
+    "hero": {
+      "titleBefore": "The marketplace for",
+      "titleHighlighted": "passionate",
+      "titleAfter": "collectors",
+      "description": "Discover rare and unique pieces: vintage figurines, retro toys, comics and much more. Join our community of collectors."
+    },
+    "cta": {
+      "browseItems": "Browse Items",
+      "createShop": "Create My Shop",
+      "startNow": "Start Now"
+    },
+    "features": {
+      "uniqueItems": {
+        "title": "Unique Items",
+        "description": "Thousands of rare and authentic collectibles"
+      },
+      "verifiedShops": {
+        "title": "Verified Shops",
+        "description": "Passionate and trusted sellers"
+      },
+      "transparentPricing": {
+        "title": "Transparent Pricing",
+        "description": "Fair prices for collectors"
+      }
+    },
+    "sections": {
+      "popularCategories": "Popular Categories",
+      "latestItems": "Latest Items",
+      "viewAll": "View All",
+      "viewAllItems": "View All Items",
+      "sellCta": {
+        "heading": "Ready to sell your treasures?",
+        "description": "Create your shop for free and join our community of passionate sellers."
+      }
+    }
+  },
+  "items": {
+    "title": "Items",
+    "description": "Discover our selection of collectibles",
+    "empty": "No items found",
+    "emptyDescription": "Check back later for new items.",
+    "status": {
+      "draft": "Draft",
+      "validated": "Validated",
+      "rejected": "Rejected"
+    },
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "price": "Price",
+      "category": "Category",
+      "shop": "Shop",
+      "errors": {
+        "nameRequired": "Name is required",
+        "nameTooLong": "Name must not exceed 255 characters",
+        "priceNegative": "Price cannot be negative",
+        "categoryRequired": "Category is required"
+      }
+    }
+  },
+  "shops": {
+    "title": "Shops",
+    "description": "Discover our collectors' shops",
+    "empty": "No shops found",
+    "emptyDescription": "Shops will be available soon.",
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "errors": {
+        "nameRequired": "Name is required"
+      }
+    }
+  },
+  "categories": {
+    "title": "Categories",
+    "description": "Browse our collection categories",
+    "empty": "No categories found",
+    "emptyDescription": "Categories will be available soon."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome, {name}!",
+    "backToSite": "Back to Site",
+    "menu": "Menu"
+  },
+  "pagination": {
+    "previous": "Previous page",
+    "next": "Next page"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "switch": "Change language",
+    "fr": "Français",
+    "en": "English"
+  }
+}

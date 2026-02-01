@@ -1,0 +1,168 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "redirecting": "Redirection...",
+    "error": "Une erreur est survenue",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "allRightsReserved": "Tous droits réservés.",
+    "items": "{count, plural, =0 {article} =1 {article} other {articles}}",
+    "itemCount": "{count} {count, plural, =0 {article} =1 {article} other {articles}}"
+  },
+  "nav": {
+    "items": "Articles",
+    "categories": "Catégories",
+    "shops": "Boutiques",
+    "dashboard": "Tableau de bord",
+    "myShops": "Mes boutiques",
+    "myProfile": "Mon profil",
+    "settings": "Paramètres",
+    "navigation": "Navigation",
+    "account": "Compte"
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "pseudo": "Pseudo",
+    "phoneNumber": "Numéro de téléphone",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Déjà un compte ?",
+    "loginTitle": "Bon retour !",
+    "loginDescription": "Connectez-vous pour accéder à votre tableau de bord",
+    "registerTitle": "Créer un compte",
+    "registerDescription": "Rejoignez notre communauté de collectionneurs",
+    "errors": {
+      "emailRequired": "L'email est requis",
+      "emailInvalid": "Email invalide",
+      "emailTooLong": "L'email ne doit pas dépasser 180 caractères",
+      "passwordRequired": "Le mot de passe est requis",
+      "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
+      "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "pseudoRequired": "Le pseudo est requis",
+      "pseudoTooLong": "Le pseudo ne doit pas dépasser 50 caractères",
+      "phoneTooLong": "Le numéro ne doit pas dépasser 20 caractères",
+      "invalidCredentials": "Email ou mot de passe incorrect"
+    }
+  },
+  "site": {
+    "name": "Collector",
+    "description": "La marketplace des collectionneurs passionnés",
+    "tagline": "Trouvez des pièces rares et uniques pour votre collection.",
+    "keywords": "collection, vintage, figurines, jouets, rétro, marketplace"
+  },
+  "home": {
+    "hero": {
+      "titleBefore": "La marketplace des",
+      "titleHighlighted": "collectionneurs",
+      "titleAfter": "passionnés",
+      "description": "Découvrez des pièces rares et uniques : figurines vintage, jouets rétro, comics et bien plus encore. Rejoignez notre communauté de collectionneurs."
+    },
+    "cta": {
+      "browseItems": "Parcourir les articles",
+      "createShop": "Créer ma boutique",
+      "startNow": "Commencer maintenant"
+    },
+    "features": {
+      "uniqueItems": {
+        "title": "Articles uniques",
+        "description": "Des milliers d'objets de collection rares et authentiques"
+      },
+      "verifiedShops": {
+        "title": "Boutiques vérifiées",
+        "description": "Des vendeurs passionnés et de confiance"
+      },
+      "transparentPricing": {
+        "title": "Prix transparents",
+        "description": "Des prix justes pour les collectionneurs"
+      }
+    },
+    "sections": {
+      "popularCategories": "Catégories populaires",
+      "latestItems": "Derniers articles",
+      "viewAll": "Voir toutes",
+      "viewAllItems": "Voir tous les articles",
+      "sellCta": {
+        "heading": "Prêt à vendre vos trésors ?",
+        "description": "Créez votre boutique gratuitement et rejoignez notre communauté de vendeurs passionnés."
+      }
+    }
+  },
+  "items": {
+    "title": "Articles",
+    "description": "Découvrez notre sélection d'articles de collection",
+    "empty": "Aucun article trouvé",
+    "emptyDescription": "Revenez plus tard pour découvrir de nouveaux articles.",
+    "status": {
+      "draft": "Brouillon",
+      "validated": "Validé",
+      "rejected": "Rejeté"
+    },
+    "form": {
+      "name": "Nom",
+      "description": "Description",
+      "price": "Prix",
+      "category": "Catégorie",
+      "shop": "Boutique",
+      "errors": {
+        "nameRequired": "Le nom est requis",
+        "nameTooLong": "Le nom ne doit pas dépasser 255 caractères",
+        "priceNegative": "Le prix ne peut pas être négatif",
+        "categoryRequired": "La catégorie est requise"
+      }
+    }
+  },
+  "shops": {
+    "title": "Boutiques",
+    "description": "Découvrez les boutiques de nos collectionneurs",
+    "empty": "Aucune boutique trouvée",
+    "emptyDescription": "Les boutiques seront bientôt disponibles.",
+    "form": {
+      "name": "Nom",
+      "description": "Description",
+      "errors": {
+        "nameRequired": "Le nom est requis"
+      }
+    }
+  },
+  "categories": {
+    "title": "Catégories",
+    "description": "Parcourez nos catégories de collection",
+    "empty": "Aucune catégorie trouvée",
+    "emptyDescription": "Les catégories seront bientôt disponibles."
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcome": "Bienvenue, {name} !",
+    "backToSite": "Retour au site",
+    "menu": "Menu"
+  },
+  "pagination": {
+    "previous": "Page précédente",
+    "next": "Page suivante"
+  },
+  "theme": {
+    "toggle": "Changer le thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "language": {
+    "switch": "Changer de langue",
+    "fr": "Français",
+    "en": "English"
+  }
+}
