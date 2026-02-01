@@ -3,12 +3,9 @@
  * For Symfony API Platform integration
  */
 
-/** JSON-LD identifier (IRI reference) */
-export type IRI = string;
-
 /** Base JSON-LD resource */
 export interface JsonLdResource {
-  "@id": IRI;
+  "@id": string;
   "@type": string;
   "@context"?: string | Record<string, unknown>;
 }

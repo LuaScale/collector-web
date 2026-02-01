@@ -10,5 +10,5 @@ export const config = {
   // - /_vercel (Vercel internals)
   // - /static (inside /public)
   // - all root files inside /public (e.g. /favicon.ico)
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: [String.raw`/((?!api|_next|_vercel|.*\..*).*)"`],
 };
