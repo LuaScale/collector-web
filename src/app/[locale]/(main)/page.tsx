@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { ItemGrid } from "@/components/items";
 import { itemsApi } from "@/lib/api/items";
@@ -36,10 +37,26 @@ async function getCategories(): Promise<Category[]> {
 }
 
 export default async function HomePage() {
+  const t = await getTranslations();
   const [items, categories] = await Promise.all([
     getItems(),
     getCategories(),
   ]);
+
+  const features = [
+    {
+      key: "uniqueItems",
+      icon: Package2,
+    },
+    {
+      key: "verifiedShops",
+      icon: Store,
+    },
+    {
+      key: "transparentPricing",
+      icon: Tag,
+    },
+  ];
 
   return (
     <div className="flex flex-col">
@@ -48,21 +65,21 @@ export default async function HomePage() {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              {HOMEPAGE.hero.title.before}{" "}
-              <span className="text-primary">{HOMEPAGE.hero.title.highlighted}</span> {HOMEPAGE.hero.title.after}
+              {t("home.hero.titleBefore")}{" "}
+              <span className="text-primary">{t("home.hero.titleHighlighted")}</span> {t("home.hero.titleAfter")}
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              {HOMEPAGE.hero.description}
+              {t("home.hero.description")}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <Link href={HOMEPAGE.hero.cta.primary.href}>
-                  {HOMEPAGE.hero.cta.primary.text}
+                <Link href="/articles">
+                  {t("home.cta.browseItems")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href={HOMEPAGE.hero.cta.secondary.href}>{HOMEPAGE.hero.cta.secondary.text}</Link>
+                <Link href="/inscription">{t("home.cta.createShop")}</Link>
               </Button>
             </div>
           </div>
@@ -73,21 +90,16 @@ export default async function HomePage() {
       <section className="py-16 border-y bg-muted/30">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {HOMEPAGE.features.map((feature, index) => {
-              const getFeatureIcon = (idx: number) => {
-                if (idx === 0) return Package2;
-                if (idx === 1) return Store;
-                return Tag;
-              };
-              const Icon = getFeatureIcon(index);
+            {features.map((feature) => {
+              const Icon = feature.icon;
               return (
-                <div key={feature.title} className="flex flex-col items-center text-center p-6">
+                <div key={feature.key} className="flex flex-col items-center text-center p-6">
                   <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold mb-2">{feature.title}</h3>
+                  <h3 className="font-semibold mb-2">{t(`home.features.${feature.key}.title`)}</h3>
                   <p className="text-sm text-muted-foreground">
-                    {feature.description}
+                    {t(`home.features.${feature.key}.description`)}
                   </p>
                 </div>
               );
@@ -101,10 +113,10 @@ export default async function HomePage() {
         <section className="py-16">
           <div className="container">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-bold">{HOMEPAGE.categories.heading}</h2>
+              <h2 className="text-2xl font-bold">{t("home.sections.popularCategories")}</h2>
               <Button variant="ghost" asChild>
-                <Link href={HOMEPAGE.categories.viewAllHref}>
-                  {HOMEPAGE.categories.viewAllText}
+                <Link href="/categories">
+                  {t("home.sections.viewAll")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -129,10 +141,10 @@ export default async function HomePage() {
       <section className="py-16 bg-muted/30">
         <div className="container">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold">{HOMEPAGE.latestItems.heading}</h2>
+            <h2 className="text-2xl font-bold">{t("home.sections.latestItems")}</h2>
             <Button variant="ghost" asChild>
-              <Link href={HOMEPAGE.latestItems.viewAllHref}>
-                {HOMEPAGE.latestItems.viewAllText}
+              <Link href="/articles">
+                {t("home.sections.viewAllItems")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -145,14 +157,14 @@ export default async function HomePage() {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container text-center">
           <h2 className="text-3xl font-bold mb-4">
-            {HOMEPAGE.cta.heading}
+            {t("home.sections.sellCta.heading")}
           </h2>
           <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
-            {HOMEPAGE.cta.description}
+            {t("home.sections.sellCta.description")}
           </p>
           <Button size="lg" variant="secondary" asChild>
-            <Link href={HOMEPAGE.cta.buttonHref}>
-              {HOMEPAGE.cta.buttonText}
+            <Link href="/inscription">
+              {t("home.cta.startNow")}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

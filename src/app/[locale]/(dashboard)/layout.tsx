@@ -1,35 +1,36 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { DashboardSidebar } from "@/components/layout/DashboardSidebar";
 import { LoadingPage } from "@/components/shared";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { DASHBOARD_LAYOUT } from "./constants";
 
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const t = useTranslations();
   const router = useRouter();
   const { isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.push(DASHBOARD_LAYOUT.routes.login);
+      router.push("/connexion");
     }
   }, [isAuthenticated, isLoading, router]);
 
   if (isLoading) {
-    return <LoadingPage message={DASHBOARD_LAYOUT.loadingMessage} />;
+    return <LoadingPage message={t("common.loading")} />;
   }
 
   if (!isAuthenticated) {
-    return <LoadingPage message={DASHBOARD_LAYOUT.redirectMessage} />;
+    return <LoadingPage message={t("common.redirecting")} />;
   }
 
   return (
@@ -45,14 +46,14 @@ export default function DashboardLayout({
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-5 w-5" />
-                <span className="sr-only">{DASHBOARD_LAYOUT.mobileMenu.ariaLabel}</span>
+                <span className="sr-only">{t("dashboard.menu")}</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0 w-64">
               <DashboardSidebar />
             </SheetContent>
           </Sheet>
-          <span className="font-semibold">{DASHBOARD_LAYOUT.mobileMenu.title}</span>
+          <span className="font-semibold">{t("nav.dashboard")}</span>
         </header>
 
         {/* Page Content */}

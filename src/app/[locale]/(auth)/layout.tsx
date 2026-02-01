@@ -1,4 +1,7 @@
-import Link from "next/link";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Package2 } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
@@ -7,6 +10,8 @@ export default function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const t = useTranslations();
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Simple Header */}
@@ -18,10 +23,10 @@ export default function AuthLayout({
           </Link>
           <nav className="flex items-center gap-4">
             <Link href="/articles" className="text-sm text-muted-foreground hover:text-foreground">
-              Articles
+              {t("nav.items")}
             </Link>
             <Link href="/boutiques" className="text-sm text-muted-foreground hover:text-foreground">
-              Boutiques
+              {t("nav.shops")}
             </Link>
           </nav>
         </div>
@@ -35,7 +40,7 @@ export default function AuthLayout({
       {/* Simple Footer */}
       <footer className="border-t py-4">
         <div className="container text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
+          © {new Date().getFullYear()} {siteConfig.name}. {t("common.allRightsReserved")}
         </div>
       </footer>
     </div>
