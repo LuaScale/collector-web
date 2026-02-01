@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Moon, Sun, Monitor } from "lucide-react";
@@ -10,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { themeLabels, type Theme } from "@/config/theme";
+import { type Theme } from "@/config/theme";
 
 const themeIcons = {
   light: Sun,
@@ -18,7 +19,14 @@ const themeIcons = {
   system: Monitor,
 } as const;
 
+const themeTranslationKeys: Record<Theme, string> = {
+  light: "light",
+  dark: "dark",
+  system: "system",
+};
+
 export function ThemeToggle() {
+  const t = useTranslations("theme");
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -31,7 +39,7 @@ export function ThemeToggle() {
     return (
       <Button variant="ghost" size="icon" disabled>
         <Sun className="h-5 w-5" />
-        <span className="sr-only">Changer le thème</span>
+        <span className="sr-only">{t("toggle")}</span>
       </Button>
     );
   }
@@ -42,13 +50,13 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="Changer le thème">
+        <Button variant="ghost" size="icon" aria-label={t("toggle")}>
           <CurrentIcon className="h-5 w-5 transition-transform" />
-          <span className="sr-only">Changer le thème</span>
+          <span className="sr-only">{t("toggle")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {(Object.keys(themeLabels) as Theme[]).map((themeKey) => {
+        {(Object.keys(themeTranslationKeys) as Theme[]).map((themeKey) => {
           const Icon = themeIcons[themeKey];
           const isActive = theme === themeKey;
           
@@ -59,7 +67,7 @@ export function ThemeToggle() {
               className={isActive ? "bg-accent" : ""}
             >
               <Icon className="h-4 w-4 mr-2" />
-              {themeLabels[themeKey]}
+              {t(themeTranslationKeys[themeKey])}
               {isActive && <span className="ml-auto text-xs">✓</span>}
             </DropdownMenuItem>
           );

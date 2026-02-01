@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { CategoryCard } from "./CategoryCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Category } from "@/types/entities/category";
@@ -10,13 +13,15 @@ interface CategoryGridProps {
 
 export function CategoryGrid({
   categories,
-  emptyMessage = "Aucune catégorie trouvée",
+  emptyMessage,
 }: Readonly<CategoryGridProps>) {
+  const t = useTranslations("categories");
+
   if (categories.length === 0) {
     return (
       <EmptyState
-        title={emptyMessage}
-        description="Les catégories seront bientôt disponibles."
+        title={emptyMessage ?? t("empty")}
+        description={t("emptyDescription")}
         icon={<Tag className="h-12 w-12" />}
       />
     );

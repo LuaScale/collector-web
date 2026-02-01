@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { ShopCard } from "./ShopCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Shop } from "@/types/entities/shop";
@@ -10,13 +13,15 @@ interface ShopGridProps {
 
 export function ShopGrid({
   shops,
-  emptyMessage = "Aucune boutique trouvée",
+  emptyMessage,
 }: Readonly<ShopGridProps>) {
+  const t = useTranslations("shops");
+
   if (shops.length === 0) {
     return (
       <EmptyState
-        title={emptyMessage}
-        description="Les boutiques seront bientôt disponibles."
+        title={emptyMessage ?? t("empty")}
+        description={t("emptyDescription")}
         icon={<Store className="h-12 w-12" />}
       />
     );

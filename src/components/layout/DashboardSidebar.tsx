@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -16,33 +16,35 @@ import {
   User,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-
-const navItems = [
-  {
-    title: "Tableau de bord",
-    href: "/tableau-de-bord",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Mes boutiques",
-    href: "/tableau-de-bord/boutiques",
-    icon: Store,
-  },
-  {
-    title: "Mon profil",
-    href: "/tableau-de-bord/profil",
-    icon: User,
-  },
-  {
-    title: "Paramètres",
-    href: "/tableau-de-bord/parametres",
-    icon: Settings,
-  },
-];
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function DashboardSidebar() {
+  const t = useTranslations();
   const pathname = usePathname();
   const { user, logout } = useAuth();
+
+  const navItems = [
+    {
+      title: t("nav.dashboard"),
+      href: "/tableau-de-bord",
+      icon: LayoutDashboard,
+    },
+    {
+      title: t("nav.myShops"),
+      href: "/tableau-de-bord/boutiques",
+      icon: Store,
+    },
+    {
+      title: t("nav.myProfile"),
+      href: "/tableau-de-bord/profil",
+      icon: User,
+    },
+    {
+      title: t("nav.settings"),
+      href: "/tableau-de-bord/parametres",
+      icon: Settings,
+    },
+  ];
 
   return (
     <aside className="hidden md:flex w-64 flex-col border-r bg-muted/30">
@@ -93,11 +95,15 @@ export function DashboardSidebar() {
           </div>
         )}
 
+        <div className="flex items-center gap-2 px-3">
+          <LanguageSwitcher />
+        </div>
+
         <div className="space-y-1">
           <Button variant="ghost" className="w-full justify-start" asChild>
             <Link href="/">
               <ChevronLeft className="h-4 w-4 mr-2" />
-              Retour au site
+              {t("dashboard.backToSite")}
             </Link>
           </Button>
           <Button
@@ -106,7 +112,7 @@ export function DashboardSidebar() {
             onClick={logout}
           >
             <LogOut className="h-4 w-4 mr-2" />
-            Déconnexion
+            {t("auth.logout")}
           </Button>
         </div>
       </div>

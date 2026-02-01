@@ -1,4 +1,7 @@
-import Link from "next/link";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shop } from "@/types/entities/shop";
@@ -10,6 +13,7 @@ interface ShopCardProps {
 }
 
 export function ShopCard({ shop }: Readonly<ShopCardProps>) {
+  const t = useTranslations("common");
   const shopId = extractId(shop["@id"]);
   const itemCount = shop.items?.length ?? 0;
 
@@ -36,7 +40,7 @@ export function ShopCard({ shop }: Readonly<ShopCardProps>) {
         <CardFooter className="pt-0">
           <Badge variant="secondary" className="gap-1">
             <Package className="h-3 w-3" />
-            {itemCount} {itemCount > 1 ? "articles" : "article"}
+            {t("itemCount", { count: itemCount })}
           </Badge>
         </CardFooter>
       </Card>

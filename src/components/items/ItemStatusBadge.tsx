@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { ItemStatus } from "@/types/entities/item";
 import { cn } from "@/lib/utils";
@@ -7,30 +10,29 @@ interface ItemStatusBadgeProps {
   className?: string;
 }
 
-const statusConfig: Record<
+const statusVariants: Record<
   ItemStatus,
-  { label: string; variant: "default" | "secondary" | "destructive" | "outline" }
+  "default" | "secondary" | "destructive" | "outline"
 > = {
-  DRAFT: {
-    label: "Brouillon",
-    variant: "secondary",
-  },
-  VALIDATED: {
-    label: "Validé",
-    variant: "default",
-  },
-  REJECTED: {
-    label: "Rejeté",
-    variant: "destructive",
-  },
+  DRAFT: "secondary",
+  VALIDATED: "default",
+  REJECTED: "destructive",
+};
+
+const statusTranslationKeys: Record<ItemStatus, string> = {
+  DRAFT: "draft",
+  VALIDATED: "validated",
+  REJECTED: "rejected",
 };
 
 export function ItemStatusBadge({ status, className }: Readonly<ItemStatusBadgeProps>) {
-  const config = statusConfig[status];
+  const t = useTranslations("items.status");
+  const variant = statusVariants[status];
+  const label = t(statusTranslationKeys[status]);
 
   return (
-    <Badge variant={config.variant} className={cn(className)}>
-      {config.label}
+    <Badge variant={variant} className={cn(className)}>
+      {label}
     </Badge>
   );
 }

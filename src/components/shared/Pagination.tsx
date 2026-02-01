@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -11,6 +12,7 @@ interface PaginationProps {
 }
 
 export function Pagination({ pagination, baseUrl }: Readonly<PaginationProps>) {
+  const t = useTranslations("pagination");
   const router = useRouter();
   const searchParams = useSearchParams();
   const { currentPage, totalPages, hasPrevious, hasNext} = pagination;
@@ -68,7 +70,7 @@ export function Pagination({ pagination, baseUrl }: Readonly<PaginationProps>) {
         size="icon"
         onClick={() => navigateToPage(currentPage - 1)}
         disabled={!hasPrevious}
-        aria-label="Page précédente"
+        aria-label={t("previous")}
       >
         <ChevronLeft className="h-4 w-4" />
       </Button>
@@ -105,7 +107,7 @@ export function Pagination({ pagination, baseUrl }: Readonly<PaginationProps>) {
         size="icon"
         onClick={() => navigateToPage(currentPage + 1)}
         disabled={!hasNext}
-        aria-label="Page suivante"
+        aria-label={t("next")}
       >
         <ChevronRight className="h-4 w-4" />
       </Button>

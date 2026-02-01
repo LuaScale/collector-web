@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -22,11 +25,14 @@ interface LoadingPageProps {
   message?: string;
 }
 
-export function LoadingPage({ message = "Chargement..." }: Readonly<LoadingPageProps>) {
+export function LoadingPage({ message }: Readonly<LoadingPageProps>) {
+  const t = useTranslations("common");
+  const displayMessage = message ?? t("loading");
+
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
       <LoadingSpinner size="lg" />
-      <p className="text-muted-foreground">{message}</p>
+      <p className="text-muted-foreground">{displayMessage}</p>
     </div>
   );
 }

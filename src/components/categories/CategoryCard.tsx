@@ -1,4 +1,7 @@
-import Link from "next/link";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Category } from "@/types/entities/category";
 import { Tag } from "lucide-react";
@@ -9,6 +12,8 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category, itemCount }: Readonly<CategoryCardProps>) {
+  const t = useTranslations("common");
+
   return (
     <Link href={`/categories/${category.slug}`}>
       <Card className="h-full transition-all hover:shadow-lg hover:-translate-y-1 group">
@@ -21,7 +26,7 @@ export function CategoryCard({ category, itemCount }: Readonly<CategoryCardProps
           </h3>
           {typeof itemCount === "number" && (
             <p className="text-sm text-muted-foreground mt-1">
-              {itemCount} {itemCount > 1 ? "articles" : "article"}
+              {t("itemCount", { count: itemCount })}
             </p>
           )}
         </CardContent>

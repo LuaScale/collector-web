@@ -1,8 +1,13 @@
-import Link from "next/link";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/config/site";
 import { Package2 } from "lucide-react";
 
 export function Footer() {
+  const t = useTranslations();
+
   return (
     <footer className="border-t bg-muted/40">
       <div className="container py-8 md:py-12">
@@ -14,28 +19,27 @@ export function Footer() {
               <span className="font-bold text-xl">{siteConfig.name}</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
-              {siteConfig.description}. Trouvez des pièces rares et uniques pour
-              votre collection.
+              {t("site.description")}. {t("site.tagline")}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h3 className="font-semibold mb-3">Navigation</h3>
+            <h3 className="font-semibold mb-3">{t("nav.navigation")}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/articles" className="hover:text-foreground transition-colors">
-                  Articles
+                  {t("nav.items")}
                 </Link>
               </li>
               <li>
                 <Link href="/categories" className="hover:text-foreground transition-colors">
-                  Catégories
+                  {t("nav.categories")}
                 </Link>
               </li>
               <li>
                 <Link href="/boutiques" className="hover:text-foreground transition-colors">
-                  Boutiques
+                  {t("nav.shops")}
                 </Link>
               </li>
             </ul>
@@ -43,21 +47,21 @@ export function Footer() {
 
           {/* Account */}
           <div>
-            <h3 className="font-semibold mb-3">Compte</h3>
+            <h3 className="font-semibold mb-3">{t("nav.account")}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/connexion" className="hover:text-foreground transition-colors">
-                  Connexion
+                  {t("auth.login")}
                 </Link>
               </li>
               <li>
                 <Link href="/inscription" className="hover:text-foreground transition-colors">
-                  Inscription
+                  {t("auth.register")}
                 </Link>
               </li>
               <li>
                 <Link href="/tableau-de-bord" className="hover:text-foreground transition-colors">
-                  Tableau de bord
+                  {t("nav.dashboard")}
                 </Link>
               </li>
             </ul>
@@ -65,7 +69,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} {siteConfig.name}. {t("common.allRightsReserved")}</p>
         </div>
       </div>
     </footer>

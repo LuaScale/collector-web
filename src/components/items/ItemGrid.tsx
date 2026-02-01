@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { ItemCard } from "./ItemCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Item } from "@/types/entities/item";
@@ -12,13 +15,15 @@ interface ItemGridProps {
 export function ItemGrid({
   items,
   showStatus = false,
-  emptyMessage = "Aucun article trouvé",
+  emptyMessage,
 }: Readonly<ItemGridProps>) {
+  const t = useTranslations("items");
+
   if (items.length === 0) {
     return (
       <EmptyState
-        title={emptyMessage}
-        description="Revenez plus tard pour découvrir de nouveaux articles."
+        title={emptyMessage ?? t("empty")}
+        description={t("emptyDescription")}
         icon={<Package className="h-12 w-12" />}
       />
     );
