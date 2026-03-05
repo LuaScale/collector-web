@@ -89,7 +89,21 @@ npm run test:headed
 
 # Voir le rapport
 npm run test:report
+
+# Cypress (runner interactif)
+npm run cypress:open
+
+# Cypress (headless)
+npm run cypress:run
+
+# Pack accessibilité RGAA (Cypress + axe)
+npm run test:rgaa
+
+# Pack RGAA auto (démarre le serveur puis lance Cypress)
+npm run test:rgaa:auto
 ```
+
+Les rapports JSON axe sont générés dans `cypress/reports/`.
 
 ## 📁 Structure du Projet
 

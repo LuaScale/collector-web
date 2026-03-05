@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:webpack": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -11,7 +12,14 @@
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "test:chromium": "playwright test --project=chromium",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:rgaa": "cypress run --spec cypress/e2e/rgaa-pack.cy.ts",
+    "test:rgaa:auto": "node ./scripts/run-cypress-rgaa.mjs",
+    "lighthouse:prepare": "node -e \"const fs=require('fs');fs.rmSync('.lighthouseci/chrome-profile',{recursive:true,force:true});fs.mkdirSync('.lighthouseci/tmp',{recursive:true});fs.mkdirSync('.lighthouseci/chrome-profile',{recursive:true});\"",
+    "lighthouse": "node ./scripts/run-lhci.mjs",
+    "lighthouse:open": "start lighthouse-reports"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -39,12 +47,16 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.58.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "cross-env": "^10.1.0",
+    "cypress": "^14.5.4",
+    "cypress-axe": "^1.7.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
