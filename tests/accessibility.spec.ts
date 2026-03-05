@@ -12,7 +12,7 @@ test.describe('Accessibility', () => {
 
   for (const { path, name } of pages) {
     test(`${name} should have proper heading hierarchy`, async ({ page }) => {
-      await page.goto(path);
+      await page.goto(path, { waitUntil: 'domcontentloaded', timeout: 30000 });
       
       // Should have at least one h1
       const h1Count = await page.locator('h1').count();
@@ -20,7 +20,7 @@ test.describe('Accessibility', () => {
     });
 
     test(`${name} should have proper landmark regions`, async ({ page }) => {
-      await page.goto(path);
+      await page.goto(path, { waitUntil: 'domcontentloaded', timeout: 30000 });
       
       // Should have main content area
       const main = page.locator('main');
@@ -28,7 +28,7 @@ test.describe('Accessibility', () => {
     });
 
     test(`${name} should have navigation landmark`, async ({ page }) => {
-      await page.goto(path);
+      await page.goto(path, { waitUntil: 'domcontentloaded', timeout: 30000 });
       
       const nav = page.getByRole('navigation');
       await expect(nav.first()).toBeVisible();

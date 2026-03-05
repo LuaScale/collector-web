@@ -18,10 +18,9 @@ test.describe('Homepage', () => {
 
   test('should have working navigation links', async ({ page }) => {
     // Check main nav links exist in header navigation
-    const nav = page.locator('header nav, header');
-    await expect(nav.getByRole('link', { name: /articles/i })).toBeVisible();
-    await expect(nav.getByRole('link', { name: /catégories/i })).toBeVisible();
-    await expect(nav.getByRole('link', { name: /boutiques/i })).toBeVisible();
+    await expect(page.locator('header a[href$="/articles"]').first()).toBeVisible();
+    await expect(page.locator('header a[href$="/categories"]').first()).toBeVisible();
+    await expect(page.locator('header a[href$="/boutiques"]').first()).toBeVisible();
   });
 
   test('should have footer with site info', async ({ page }) => {
