@@ -22,13 +22,20 @@ interface ArticlesPageProps {
 
 async function getItems(page: number, itemsPerPage: number, categoryId?: number): Promise<HydraCollection<Item> | null> {
   try {
-    return await itemsApi.list({
-      page,
-      itemsPerPage,
-      status: ARTICLES_PAGE.config.status,
-      "order[createdAt]": ARTICLES_PAGE.config.order,
-      category: categoryId,
-    });
+    const response = await Promise.race([
+      itemsApi.list({
+        page,
+        itemsPerPage,
+        status: ARTICLES_PAGE.config.status,
+        "order[createdAt]": ARTICLES_PAGE.config.order,
+        category: categoryId,
+      }),
+      new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error("Items fetch timeout")), 7000);
+      }),
+    ]);
+
+    return response;
   } catch {
     return null;
   }
@@ -63,7 +70,7 @@ export default async function ArticlesPage({ searchParams }: Readonly<ArticlesPa
   return (
     <div className="container py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold\">{ARTICLES_PAGE.heading}</h1>
+        <h1 className="text-3xl font-bold">{ARTICLES_PAGE.heading}</h1>
         <p className="text-muted-foreground mt-2">
           {ARTICLES_PAGE.messages.itemsCount(getCollectionTotalItems(response))}
         </p>

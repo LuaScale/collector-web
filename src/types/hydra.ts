@@ -4,8 +4,10 @@
  */
 
 /** Base JSON-LD resource */
+export type IRI = string;
+
 export interface JsonLdResource {
-  "@id": string;
+  "@id": IRI;
   "@type": string;
   "@context"?: string | Record<string, unknown>;
 }
