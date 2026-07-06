@@ -86,59 +86,62 @@ export default async function BoutiquePage({
     : null;
 
   return (
-    <div className="container py-8">
+    <div className="container py-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Back Link */}
       <Link
         href={BOUTIQUE_DETAIL_PAGE.backLink.href}
-        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6"
+        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6 group"
       >
-        <ArrowLeft className="h-4 w-4 mr-2" />
+        <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-0.5 transition-transform" />
         {BOUTIQUE_DETAIL_PAGE.backLink.text}
       </Link>
 
-      {/* Shop Header */}
-      <Card className="mb-8">
-        <CardContent className="pt-6">
-          <div className="flex flex-col md:flex-row md:items-start gap-6">
-            {/* Shop Icon */}
-            <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-              <Store className="h-10 w-10 text-primary" />
-            </div>
-
-            {/* Shop Info */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-start justify-between gap-4 flex-wrap">
-                <div>
-                  <h1 className="text-3xl font-bold">{shop.name}</h1>
-                  {owner && (
-                    <div className="flex items-center gap-2 mt-2 text-muted-foreground">
-                      <User className="h-4 w-4" />
-                      <span>{BOUTIQUE_DETAIL_PAGE.shopInfo.ownerLabel} {owner.pseudo}</span>
-                      {owner.isVerified && (
-                        <Badge variant="secondary" className="text-xs">
-                          Vérifié
-                        </Badge>
-                      )}
-                    </div>
-                  )}
-                </div>
-                <Badge variant="outline" className="gap-1">
-                  <Package className="h-3 w-3" />
-                  {itemsResponse
-                    ? BOUTIQUE_DETAIL_PAGE.shopInfo.itemsLabel(getCollectionTotalItems(itemsResponse))
-                    : "..."}
-                </Badge>
-              </div>
-
-              {shop.description && (
-                <>
-                  <Separator className="my-4" />
-                  <p className="text-muted-foreground">{shop.description}</p>
-                </>
-              )}
-            </div>
+      {/* Shop Header Banner */}
+      <Card className="relative overflow-hidden border border-border/80 bg-card/40 backdrop-blur-xs rounded-3xl p-6 sm:p-8 mb-8 shadow-xs">
+        {/* Background decorative mesh gradient */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/8 via-transparent to-background opacity-90" />
+        <div className="absolute top-0 right-0 h-[200px] w-[200px] bg-primary/10 rounded-full blur-[60px] pointer-events-none" />
+        
+        <div className="flex flex-col md:flex-row md:items-center gap-6 relative z-10">
+          {/* Shop Logo Squircle */}
+          <div className="h-20 w-20 rounded-2xl bg-card border border-border/80 shadow-md flex items-center justify-center shrink-0">
+            <Store className="h-10 w-10 text-primary" />
           </div>
-        </CardContent>
+
+          {/* Shop Info */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <div className="space-y-1">
+                <h1 className="text-3xl font-extrabold tracking-tight text-foreground">{shop.name}</h1>
+                {owner && (
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <User className="h-4 w-4" />
+                    <span>{BOUTIQUE_DETAIL_PAGE.shopInfo.ownerLabel} <span className="font-semibold text-foreground">{owner.pseudo}</span></span>
+                    {owner.isVerified && (
+                      <Badge variant="default" className="text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary border-none">
+                        Vérifié
+                      </Badge>
+                    )}
+                  </div>
+                )}
+              </div>
+              
+              <Badge variant="secondary" className="gap-1 bg-muted-foreground/10 text-muted-foreground font-semibold border-none rounded-full px-3 py-1">
+                <Package className="h-3.5 w-3.5" />
+                {itemsResponse
+                  ? BOUTIQUE_DETAIL_PAGE.shopInfo.itemsLabel(getCollectionTotalItems(itemsResponse))
+                  : "..."}
+              </Badge>
+            </div>
+
+            {shop.description && (
+              <>
+                <Separator className="my-4 bg-border/60" />
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">{shop.description}</p>
+              </>
+            )}
+          </div>
+        </div>
       </Card>
 
       {/* Shop Items */}
