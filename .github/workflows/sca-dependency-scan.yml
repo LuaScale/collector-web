@@ -1,0 +1,46 @@
+name: SCA - Dependency Scan
+
+on:
+  workflow_call:
+
+permissions:
+  security-events: write
+  contents: read
+
+jobs:
+  sca-dependency-scan:
+    name: SCA - npm audit & Trivy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔍 Run npm audit
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+      - name: 🔍 Run Trivy SCA (filesystem scan)
+        uses: aquasecurity/trivy-action@0.27.0
+        with:
+          scan-type: 'fs'
+          format: 'sarif'
+          output: 'trivy-deps-report.sarif'
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
+
+      - name: 📤 Upload Trivy SARIF
+        uses: github/codeql-action/upload-sarif@v4
+        if: always() && hashFiles('trivy-deps-report.sarif') != ''
+        with:
+          sarif_file: trivy-deps-report.sarif
+          category: trivy-sca
