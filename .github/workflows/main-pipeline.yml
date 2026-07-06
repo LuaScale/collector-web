@@ -1,0 +1,36 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    if: github.event_name != 'schedule'
+    uses: ./.github/workflows/build-test.yml
+
+  code-quality-sast:
+    uses: ./.github/workflows/code-quality-sast.yml
+    permissions:
+      security-events: write
+      contents: read
+      actions: read
+
+  secret-scanning:
+    uses: ./.github/workflows/secret-scanning.yml
+
+  sca-dependency-scan:
+    uses: ./.github/workflows/sca-dependency-scan.yml
+    permissions:
+      security-events: write
+      contents: read
+
+  lighthouse-ci:
+    if: github.event_name != 'schedule'
+    needs: build-test
+    uses: ./.github/workflows/lighthouse-ci.yml
