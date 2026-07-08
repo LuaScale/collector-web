@@ -22,6 +22,9 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: 📦 Install project
+        run: npm i
+        
       - name: 📦 Install dependencies
         run: npm ci
 
